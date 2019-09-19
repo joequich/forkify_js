@@ -1,0 +1,25 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "forkify project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joequich/forkify_js.git"
+  },
+  "author": "Joseph Quispe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joequich/forkify_js/issues"
+  },
+  "homepage": "https://github.com/joequich/forkify_js#readme",
+  "devDependencies": {
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {}
+}
