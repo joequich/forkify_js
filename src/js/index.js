@@ -1,6 +1,10 @@
 // Global app controller
-import num from './test.js'
-let a = 5;
-let b = 6;
-console.log(`The result is ${a + b}.`);
-console.log(`I imported ${num} from another module.`);
+import Search from './models/Search'
+
+const search = new Search('pizza');
+console.log(search);
+
+search.getResults();
+
+//https://www.food2fork.com/api/search
+//aa6634f7387fbbe73d4722f26b2fe165 
