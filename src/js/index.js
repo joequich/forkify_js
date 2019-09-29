@@ -1,7 +1,7 @@
 // Global app controller
 import Search from './models/Search'
 import * as searchView from './views/searchView';
-import { elements } from './views/base';
+import { elements, renderLoader, clearLoader } from './views/base';
 /** Global state of the app
  * - search object
  * - current recipe object
@@ -23,12 +23,14 @@ const controlSearch = async () => {
         // 3ero prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes);
         console.time()
         // 4to search for recipes
         await state.search.getResults();
 
         // 5to render results on UI
         console.log(state.search.result);
+        clearLoader();
         searchView.renderResults(state.search.result);
         
         console.timeEnd()
@@ -40,7 +42,13 @@ elements.searchForm.addEventListener('submit', e => {
     controlSearch();
 });
 
-
-console.log("Hola");
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.result, goToPage);
+    }
+});
 //https://www.food2fork.com/api/search
 //aa6634f7387fbbe73d4722f26b2fe165 
