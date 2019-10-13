@@ -11,14 +11,23 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 };
 
-export const highlightSelected =id => {
+export const highlightSelected = id => {
     const resultsArr = Array.from(document.querySelectorAll('.results__link'));
 
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active');
     })
 
-    document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
+    // Check if recipe to highlight is in the searchlist
+    const inList = resultsArr.includes(el => {
+        el.getAttribute('href') === `#${id}`;
+    });
+
+    if (inList) {
+        document.querySelector(`a[href*="#${id}"]`).classList.add('results__link--active');
+    }
+
+    
 }
 
 const limitRecipeTitle = (title, limit = 17) => {

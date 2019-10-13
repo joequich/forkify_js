@@ -20,7 +20,7 @@ export default class Recipe {
         }    
     }
 
-    calcTime () {
+    calcTime() {
         // assuming that we neeed 15 min for each 3 ingredients
         const numImg = this.ingredients.length;
         const periods = Math.ceil(numImg / 3);
@@ -86,5 +86,17 @@ export default class Recipe {
         });
 
         this.ingredients = newIngredients;
+    }
+
+    updateServings(type) {
+        // servings
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+        //ingredients
+        this.ingredients.forEach(ing => {
+            ing.count *= (newServings / this.servings);
+        });
+
+        this.servings = newServings;
     }
 }
